@@ -8,6 +8,9 @@
   },
   "scripts": {
     "start": "npx webpack serve",
-    "build": "npx webpack"
+    "build": "npx webpack --env=production"
+  },
+  "bin": {
+    "webpack": "./node_modules/.bin/webpack"
   }
 }
