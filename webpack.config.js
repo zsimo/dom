@@ -3,7 +3,13 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var { CleanWebpackPlugin } = require('clean-webpack-plugin');
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+var paths = {
+    src: path.resolve(__dirname, "src"),
+    pages: path.resolve(__dirname, "src", "pages"),
+    public: path.resolve(__dirname, "public")
+};
 
 module.exports = function (env) {
     
@@ -17,13 +23,19 @@ module.exports = function (env) {
     
     return {
         mode: MODE,
+        entry: {
+            index: [
+                path.resolve(paths.pages, "index", "index.js"),
+                path.resolve(paths.pages, "index", "style", "index.scss"),
+            ]
+        },
         output: {
-            path: path.resolve(__dirname, 'public'),
+            path: paths.public,
         },
         devtool: false,
         optimization: optimization,
         devServer: {
-            contentBase: path.resolve(__dirname, 'public'),
+            contentBase: paths.public,
             compress: true,
             port: 9001
         },
@@ -38,9 +50,12 @@ module.exports = function (env) {
                 {
                     test: /\.scss$/,
                     use: [
+                    /** 
                       "style-loader",
                       "css-loader",
                       "sass-loader"
+                      */
+                      MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'
                     ]
                   },
             ]
@@ -53,7 +68,14 @@ module.exports = function (env) {
         },
         plugins: [
             new CleanWebpackPlugin(),
-            new HtmlWebpackPlugin()
+            new MiniCssExtractPlugin({
+                filename: "[name]_[contenthash].css"
+            }),
+            new HtmlWebpackPlugin({
+                template: path.resolve(paths.src, "html.ejs"),
+                chunks: ["index"],
+                filename: path.resolve(paths.public, "index.html")          
+            })
         ]
     }
 };
