@@ -37,9 +37,9 @@ var htmlWebpackPluginCollection = PAGES.map(function (page) {
     } else {
         filename = path.resolve(paths.public, page, "index.html");
     }
-
+    
     return new HtmlWebpackPlugin({
-        template: path.resolve(paths.src, "html.ejs"),
+        template: path.resolve(paths.src, "pages", page, "html.ejs"),
         chunks: [page],
         filename: filename        
     });
