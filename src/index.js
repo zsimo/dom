@@ -1,4 +1,4 @@
-console.log("ciao")
+require("./style/index.scss");
 
 
 
