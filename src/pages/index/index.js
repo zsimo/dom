@@ -1,7 +1,3 @@
-// require("/style/index.scss");
-
-document.write("demo");
-
 
 var container = document.getElementById("container");
 var child = document.getElementById("child");
