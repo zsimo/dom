@@ -37,31 +37,3 @@ function check () {
         console.log("?")
     }
 }
-
-
-
-var STEP = 50;
-document.getElementById("up").addEventListener("click", function up () {
-    //child.style.marginTop = child.style.marginTop ? parseInt(child.style.marginTop, 10) - STEP + "px" : STEP + "px";
-    child.style.top = child.style.top ? parseInt(child.style.top, 10) - STEP + "px" : STEP + "px";
-    check();
-});
-document.getElementById("down").addEventListener("click", function down () {
-    //child.style.marginTop = child.style.marginTop ? parseInt(child.style.marginTop, 10) + STEP + "px" : STEP + "px";
-    child.style.top = child.style.top ? parseInt(child.style.top, 10) + STEP + "px" : STEP + "px";
-    check();
-});
-
-
-function addList () {
-    var ul = document.createElement("ul");
-    for (var i = 0; i < 100; i ++) {
-        var li = document.createElement("li");
-        li.innerText = "ciao" + i;
-        ul.appendChild(li);
-    }
-
-    container.appendChild(ul);
-}
-
-addList();
