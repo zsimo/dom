@@ -1,8 +1,10 @@
 @import "reset";
 @import "colors";
+//@import "font01";
+@import "font02";
 
 body {
     background: $bg-color;
-    font-family: 'Encode Sans', sans-serif;
+    height: 100vh;
 }
 
