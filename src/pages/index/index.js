@@ -1,4 +1,6 @@
+"use strict";
 
+var helpers = require("/src/helpers.js");
 
 
 function play () {
@@ -9,7 +11,6 @@ function play () {
     var col = main.querySelectorAll(".col")[1];
     var newCol = document.createElement("div");
     newCol.className = "col";
-
 
 
     // header
@@ -30,7 +31,7 @@ function play () {
     var button = document.createElement("button");
     button.innerText = "Adhust main height [body.clientHeight - header.clientHeight]";
     button.onclick = function () {
-        main.style.height = document.body.clientHeight - header.clientHeight + "px";
+        helpers.adjustHeight(header, main);
     };
     newCol.appendChild(button);
 
@@ -38,8 +39,6 @@ function play () {
 
 
 }
-
-
 
 
 window.addEventListener('resize', play);

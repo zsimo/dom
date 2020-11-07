@@ -8,3 +8,30 @@ body {
     height: 100vh;
 }
 
+
+header {
+    background: $primary;
+    color: #FFFAFA;
+    padding: 20px 5px;
+}
+main {
+    padding: 0 5px;
+    display: flex;
+ 
+
+    textarea {
+        width: 50%;
+        height: 500px;
+    }
+
+    .col {
+        width: 50%;
+        padding: 10px;
+        
+    }
+    .col:first-child {
+        text-align: center;
+        border-right: 5px solid $primary;
+    }
+ 
+}

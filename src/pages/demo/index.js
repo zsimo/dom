@@ -1,69 +1,34 @@
-document.write("<h1>demo</h1>");
+"use strict";
+
+var helpers = require("/src/helpers.js");
+
+var header = document.querySelector("header");
+var main = document.querySelector("main");
+var textarea = document.querySelector("textarea");
 
 
-var container = document.getElementById("container");
-var child = document.getElementById("child");
-container.addEventListener("click", click);
+textarea.addEventListener("scroll", onSroll);
 
-function click (event) {
+
+function onSroll (event) {
     var target = event.target;
 
-    console.log("clientHeight", target.clientHeight); //  CSS height + CSS padding - height of horizontal scrollbar (if present)
-    console.log("scrollHeight", target.scrollHeight); // value is equal to the minimum height the element would require in order to fit all the content in the viewport without using a vertical scrollbar. The height is measured in the same way as clientHeight
-    console.log("scrollTop", target.scrollTop); //  gets or sets the number of pixels that an element's content is scrolled vertically.
 
-    // scroll at the end
-    // element.scrollHeight - element.scrollTop === element.clientHeight
+    var scrollEnd = target.scrollHeight - target.scrollTop <= target.clientHeight;
+    var col = main.querySelectorAll(".col")[1];
+    var newCol = document.createElement("div");
+    newCol.className = "col";
 
-    console.log("offsetHeight", target.offsetHeight); //  CSS height + CSS padding CSS border + height of horizontal scrollbar (if present)
-     
-    console.log("clientTop", target.clientTop);
-
+    if (scrollEnd) {
+        var p = document.createElement("p");
+        p.innerText = "scroll end";
+        newCol.appendChild(p);
+    }
+    
+    main.replaceChild(newCol, col);
 }
 
-function check () {
-    console.log("container.clientHeight",container.clientHeight, "container.scrollHeight",container.scrollHeight);
-    console.log("child.offsetTop",child.offsetTop, "container.scrollTop", container.scrollTop);
-
-    // down
-    if (child.offsetTop + child.clientHeight > container.clientHeight + container.scrollTop) {
-        console.log("go down")
-        container.scrollTop += child.clientHeight;
-    }
-    else if (child.offsetTop < container.scrollTop) {
-        console.log("go up")
-        container.scrollTop -= child.clientHeight;
-    }
-    // up
-    else {
-        console.log("?")
-    }
-}
-
-
-
-var STEP = 50;
-document.getElementById("up").addEventListener("click", function up () {
-    //child.style.marginTop = child.style.marginTop ? parseInt(child.style.marginTop, 10) - STEP + "px" : STEP + "px";
-    child.style.top = child.style.top ? parseInt(child.style.top, 10) - STEP + "px" : STEP + "px";
-    check();
+helpers.adjustHeight(header, main);
+window.addEventListener('resize', function () {
+    helpers.adjustHeight(header, main);
 });
-document.getElementById("down").addEventListener("click", function down () {
-    //child.style.marginTop = child.style.marginTop ? parseInt(child.style.marginTop, 10) + STEP + "px" : STEP + "px";
-    child.style.top = child.style.top ? parseInt(child.style.top, 10) + STEP + "px" : STEP + "px";
-    check();
-});
-
-
-function addList () {
-    var ul = document.createElement("ul");
-    for (var i = 0; i < 100; i ++) {
-        var li = document.createElement("li");
-        li.innerText = "ciao" + i;
-        ul.appendChild(li);
-    }
-
-    container.appendChild(ul);
-}
-
-addList();
