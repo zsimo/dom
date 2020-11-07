@@ -62,20 +62,25 @@ function select (direction) {
     newSelectedItem.classList.add("selected");
 
 
+    var margin = 0;
     var position;
-    var offset = newSelectedItem.offsetHeight + 2;
+    var offset = newSelectedItem.offsetHeight + margin;
     if (direction === "up") {
         position = newSelectedItem.offsetTop;
-        tableContainer.scrollTop -= offset;
-        
+        if ((newSelectedItem.offsetTop - tableContainer.scrollTop) <= margin) {
+            tableContainer.scrollTop -= offset;
+        }
+
+        // console.log(newSelectedItem.offsetTop, newSelectedItem.offsetParent);
+        // console.log(position, tableContainer.scrollHeight - tableContainer.scrollTop, tableContainer.clientHeight);
     } else {
-        position = newSelectedItem.offsetHeight + newSelectedItem.offsetTop + newSelectedItem.offsetHeight;
-        if (position >= container.clientHeight) {
+        position = newSelectedItem.offsetHeight + newSelectedItem.offsetTop;
+        if (position >= tableContainer.clientHeight) {
             tableContainer.scrollTop += offset;
         }
     }
   
-    console.log(position, container.clientHeight, tableContainer.clientHeight);
+    //console.log(position, tableContainer.clientHeight);
     
 }
 
