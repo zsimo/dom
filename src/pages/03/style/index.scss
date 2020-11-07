@@ -1,7 +1,7 @@
 @import "src/style/index";
 
 .table-container {
-    background: white;
+    background: $white;
     width: 300px;
     max-height: 400px;
     overflow-y: auto;
@@ -15,7 +15,10 @@ table {
 td {
     padding: 0;
     text-align: left;
+    padding: 6px;
 }
 td.selected {
     background: $secondary;
+    color: $white;
+    font-weight: bold;
 }

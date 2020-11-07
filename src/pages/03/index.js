@@ -5,12 +5,8 @@ var helpers = require("/src/helpers.js");
 var header = document.querySelector("header");
 var main = document.querySelector("main");
 var container = main.querySelectorAll(".col")[0];
-
-
-helpers.adjustHeight(header, main);
-window.addEventListener('resize', function () {
-    helpers.adjustHeight(header, main);
-});
+var up = document.getElementById("up");
+var down = document.getElementById("down");
 
 
 
@@ -62,30 +58,37 @@ function select (direction) {
     newSelectedItem.classList.add("selected");
 
 
-    var margin = 0;
     var position;
-    var offset = newSelectedItem.offsetHeight + margin;
+    var offset = newSelectedItem.offsetHeight;
     if (direction === "up") {
         position = newSelectedItem.offsetTop;
-        if ((newSelectedItem.offsetTop - tableContainer.scrollTop) <= margin) {
+        if ((newSelectedItem.offsetTop - tableContainer.scrollTop) < 0) {
             tableContainer.scrollTop -= offset;
         }
 
-        // console.log(newSelectedItem.offsetTop, newSelectedItem.offsetParent);
-        // console.log(position, tableContainer.scrollHeight - tableContainer.scrollTop, tableContainer.clientHeight);
     } else {
         position = newSelectedItem.offsetHeight + newSelectedItem.offsetTop;
-        if (position >= tableContainer.clientHeight) {
+        if (position >= tableContainer.offsetHeight) {
             tableContainer.scrollTop += offset;
         }
     }
   
-    //console.log(position, tableContainer.clientHeight);
     
 }
 
-window.onkeydown = function (event) {
+up.addEventListener("click", function () {
+    select("up");
+});
+down.addEventListener("click", function () {
+    select("down");
+});
 
+helpers.adjustHeight(header, main);
+window.addEventListener('resize', function () {
+    helpers.adjustHeight(header, main);
+});
+
+window.onkeydown = function (event) {
     if (event.key === "ArrowUp") {
         select("up");
     } else if (event.key === "ArrowDown") {
