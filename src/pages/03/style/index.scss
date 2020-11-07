@@ -1,0 +1,15 @@
+@import "src/style/index";
+
+.table-container {
+    background: white;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+td {
+    padding: 0;
+}
+td.selected {
+    background: blue;
+}

@@ -17,7 +17,7 @@ function click (event) {
     // scroll at the end
     // element.scrollHeight - element.scrollTop === element.clientHeight
 
-    console.log("offsetHeight", target.offsetHeight); //  CSS height + CSS padding CSS border + height of horizontal scrollbar (if present)
+    console.log("offsetHeight", target.offsetHeight); //  CSS height + CSS padding + CSS border + height of horizontal scrollbar (if present)
      
     console.log("clientTop", target.clientTop);
 
