@@ -1,5 +1,7 @@
 "use strict";
 
+require("/src/common.js");
+
 var helpers = require("/src/helpers.js");
 
 var header = document.querySelector("header");
