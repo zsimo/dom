@@ -29,30 +29,31 @@ PAGES.forEach(function (page) {
     ];
 });
 
-var htmlWebpackPluginCollection = PAGES.map(function (page) {
-
-    var filename;
-    if (page === "index") {
-        filename = path.resolve(paths.public, "index.html");
-    } else {
-        filename = path.resolve(paths.public, page, "index.html");
-    }
-    
-    return new HtmlWebpackPlugin({
-        template: path.resolve(paths.src, "pages", page, "html.ejs"),
-        chunks: [page],
-        filename: filename        
-    });
-
-});
-
 
 
 
 module.exports = function (env) {
-    
+
     const IS_PROD = (env && env.production) ? true : false;
     const MODE = IS_PROD ? "production" : "development";
+
+    var htmlWebpackPluginCollection = PAGES.map(function (page) {
+
+        var filename;
+        if (page === "index") {
+            filename = path.resolve(paths.public, "index.html");
+        } else {
+            filename = path.resolve(paths.public, page, "index.html");
+        }
+        
+        return new HtmlWebpackPlugin({
+            template: path.resolve(paths.src, "pages", page, "html.ejs"),
+            chunks: [page],
+            filename: filename, 
+            base: IS_PROD ? "https://zsimo.github.io/dom/public" : false
+        });
+    
+    });
 
     var optimization = {};
     if (IS_PROD) {

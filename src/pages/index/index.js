@@ -2,7 +2,6 @@
 
 var main = document.querySelector("main");
 
-console.log(main)
 var pages = [
     "01",
     "02",
