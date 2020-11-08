@@ -64,6 +64,7 @@ module.exports = function (env) {
         entry: entry,
         output: {
             path: paths.public,
+            filename: "[name]_[contenthash].js"
         },
         devtool: false,
         optimization: optimization,

@@ -14,6 +14,9 @@ header {
     color: #FFFAFA;
     padding: 20px 5px;
 }
+header td {
+    padding: 0;
+}
 main {
     padding: 0 5px;
     display: flex;
@@ -34,4 +37,14 @@ main {
         border-right: 5px solid $primary;
     }
  
+}
+
+a {
+    color: $white;
+    text-decoration: none;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0px;
 }
