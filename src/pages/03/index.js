@@ -34,7 +34,7 @@ function addList () {
 }
 
 addList();
-var counter = 0;
+
 function select (direction) {
     
     var selectedItem = document.querySelector("td.selected");
@@ -64,15 +64,13 @@ function select (direction) {
     var offset = newSelectedItem.offsetHeight;
     if (direction === "up") {
         position = newSelectedItem.offsetTop;
-        if ((newSelectedItem.offsetTop - tableContainer.scrollTop) < 0) {
+        if ((position - tableContainer.scrollTop) < 0) {
             tableContainer.scrollTop -= offset;
         }
 
     } else {
         position = newSelectedItem.offsetHeight + newSelectedItem.offsetTop;
         if (position > tableContainer.offsetHeight + tableContainer.scrollTop) {
-            console.log(counter)
-            counter ++;
             tableContainer.scrollTop += offset;
         }
     }
