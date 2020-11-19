@@ -50,7 +50,7 @@ module.exports = function (env) {
             template: path.resolve(paths.src, "pages", page, "html.ejs"),
             chunks: [page],
             filename: filename, 
-            base: IS_PROD ? "https://zsimo.github.io/dom/public" : false
+            //base: IS_PROD ? "https://zsimo.github.io/dom/public" : false
         });
     
     });
