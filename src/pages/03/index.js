@@ -9,6 +9,7 @@ var main = document.querySelector("main");
 var container = main.querySelectorAll(".col")[0];
 var up = document.getElementById("up");
 var down = document.getElementById("down");
+var SELECTED = "selected";
 
 
 
@@ -22,7 +23,7 @@ function addList () {
         var td = document.createElement("td");
         td.innerText = "ciao" + i;
         if (i === 0) {
-            td.className = "selected";
+            td.className = SELECTED;
         }
         tr.appendChild(td);
         table.appendChild(tr);
@@ -37,8 +38,7 @@ addList();
 
 function select (direction) {
     
-    var selectedItem = document.querySelector("td.selected");
-    var tableContainer = document.querySelector(".table-container");
+    var selectedItem = document.querySelector("td." + SELECTED);
 
     var row = selectedItem.parentElement;
     var table = row.parentElement;
@@ -55,9 +55,9 @@ function select (direction) {
     }
 
     
-    selectedItem.classList.remove("selected");
+    selectedItem.classList.remove(SELECTED);
     var newSelectedItem = table.rows[rowIndex].querySelector("td");
-    newSelectedItem.classList.add("selected");
+    newSelectedItem.classList.add(SELECTED);
 
 
     var position;
@@ -77,6 +77,20 @@ function select (direction) {
   
     
 }
+
+var tableContainer = document.querySelector(".table-container");
+tableContainer.addEventListener("click", function (event) {
+   var target = event.target;
+   if (target.tagName !== "TD") {
+        return;
+   }
+   console.log(target);
+   if (!target.classList.contains(SELECTED)) {
+        var selectedItem = document.querySelector("td." + SELECTED);
+        selectedItem.classList.remove(SELECTED);
+        target.classList.add(SELECTED);
+   }
+});
 
 up.addEventListener("click", function () {
     select("up");

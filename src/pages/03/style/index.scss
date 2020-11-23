@@ -22,3 +22,6 @@ td.selected {
     color: $white;
     font-weight: bold;
 }
+td:not(.selected):hover {
+    cursor: pointer;
+}
