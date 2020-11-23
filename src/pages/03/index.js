@@ -108,9 +108,13 @@ window.addEventListener('resize', function () {
 });
 
 window.onkeydown = function (event) {
+    
     if (event.key === "ArrowUp") {
         select("up");
     } else if (event.key === "ArrowDown") {
         select("down");
     }
+
+    event.preventDefault();
+
 }
