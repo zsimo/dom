@@ -75,6 +75,10 @@ function select (direction) {
         }
     }
   
+    // recenter the selected item if the container is manually scrolled
+    if (newSelectedItem.offsetTop < tableContainer.scrollTop || newSelectedItem.offsetTop > tableContainer.offsetHeight + tableContainer.scrollTop) {
+        tableContainer.scrollTop = newSelectedItem.offsetTop;
+    }
     
 }
 
@@ -84,7 +88,6 @@ tableContainer.addEventListener("click", function (event) {
    if (target.tagName !== "TD") {
         return;
    }
-   console.log(target);
    if (!target.classList.contains(SELECTED)) {
         var selectedItem = document.querySelector("td." + SELECTED);
         selectedItem.classList.remove(SELECTED);
